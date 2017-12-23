@@ -1,5 +1,5 @@
 {
-    "name": "slim/flash",
+    "name": "lefuturiste/flash",
     "type": "library",
     "description": "Slim Framework Flash message service provider",
     "keywords": ["slim","framework","provider","flash","message"],
