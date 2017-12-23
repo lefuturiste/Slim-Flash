@@ -95,6 +95,26 @@ class Messages
     }
 
     /**
+     * Add flash message for the next request
+     *
+     * @param string $key The key to store the message under
+     * @param array $messages Array of many Message to show on next request
+     */
+    public function addManyMessages($key, $messages)
+    {
+        // Create Array for this key
+        if (!isset($this->storage[$this->storageKey][$key])) {
+            $this->storage[$this->storageKey][$key] = [];
+        }
+
+        // Push onto the array
+        foreach ($messages as $messageKey => $message) {        	
+	        // Push onto the array
+	        $this->storage[$this->storageKey][$key][] = $message;
+        }
+    }
+
+    /**
      * Add flash message for current request
      *
      * @param string $key The key to store the message under

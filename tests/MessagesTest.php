@@ -99,6 +99,25 @@ class MessagesTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(['46', '48'], $storage['slimFlash']['key']);
     }
 
+    // Test a array can be added to a message array for the next request
+    public function testAddMessageFromAnRealArrayForNextRequest()
+    {
+        $storage = ['slimFlash' => []];
+        $flash   = new Messages($storage);
+
+        $flash->addManyMessages('key', [
+        	'hello world',
+        	'hello wuld'
+    	]);
+        $flash->addManyMessages('key', [
+        	'hello',
+        	'hel'
+    	]);
+
+        $this->assertArrayHasKey('slimFlash', $storage);
+        $this->assertEquals(['hello world', 'hello wuld', 'hello', 'hel'], $storage['slimFlash']['key']);
+    }
+
     // Test a string can be added to a message array for the next request
     public function testAddMessageFromStringForNextRequest()
     {
